@@ -1,1 +1,134 @@
-<h>hello~</h>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ECharts</title>
+    <!-- 引入刚刚下载的 ECharts 文件 -->
+    <script src="echarts.js"></script>
+  </head>
+  <body>
+    <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+    <div style="width: 50%; float: left; overflow: hidden">
+      <div id="chart1" style="width: 100%; height: 300px"></div>
+    </div>
+    <div style="width: 50%; float: left; overflow: hidden">
+      <div id="chart2" style="width: 100%; height: 300px"></div>
+    </div>
+    <div style="width: 60%; float: left;overflow: hidden">
+      <div id="chart3" style="width: 100%; height: 300px"></div>
+    </div>
+    <div style="width: 35%;;overflow: hidden">
+      <div id="text" style="width: 100%; height: 300px">
+        <h3>
+          从图表的信息可以看出，该企业的从业人员的数量在逐年稳步递增，其大数据相关专业的人数也随之逐年增长，截至2024年，大数据相关专业人数占该企业从业人数的25%左右。
+        </h3>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(document.getElementById("chart1"));
+
+      // 指定图表的配置项和数据
+      var option = {
+        title: {
+          text: "本企业从业人员数量",
+        },
+        tooltip: {},
+        legend: {
+          data: ["数量"],
+        },
+        xAxis: {
+          data: ["2021", "2022", "2023", "2024"],
+        },
+        yAxis: {},
+        series: [
+          {
+            name: "数量",
+            type: "bar",
+            data: [300, 340, 370, 400],
+            label: { show: true },
+          },
+        ],
+      };
+      myChart.setOption(option);
+
+      var myChart2 = echarts.init(document.getElementById("chart2"));
+      var option = {
+        title: {
+          text: "大数据技术相关专业人数",
+        },
+        legend: {
+          data: ["数量"],
+        },
+        xAxis: {
+          data: ["2021", "2022", "2023", "2024"],
+        },
+        yAxis: {
+          type: "value",
+        },
+        series: [
+          {
+            name: "数量",
+            data: [50, 60, 80, 100],
+            type: "line",
+            label: { show: true },
+          },
+        ],
+      };
+      myChart2.setOption(option);
+
+      var myChart3 = echarts.init(document.getElementById("chart3"));
+      var option = {
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow",
+          },
+        },
+        legend: {},
+        grid: {
+          left: "3%",
+          right: "4%",
+          bottom: "3%",
+          containLabel: true,
+        },
+        xAxis: {
+          type: "value",
+        },
+        yAxis: {
+          type: "category",
+          data: ["2021", "2022", "2023", "2024"],
+        },
+        series: [
+          {
+            name: "大数据技术相关专业人数",
+            type: "bar",
+            stack: "total",
+            label: {
+              show: true,
+            },
+            emphasis: {
+              focus: "series",
+            },
+            data: [50, 60, 80, 100],
+          },
+          {
+            name: "本企业其他专业人数",
+            type: "bar",
+            stack: "total",
+            label: {
+              show: true,
+            },
+            emphasis: {
+              focus: "series",
+            },
+            data: [250, 280, 290, 300],
+          },
+        ],
+      };
+      myChart3.setOption(option);
+
+    </script>
+  </body>
+</html>
