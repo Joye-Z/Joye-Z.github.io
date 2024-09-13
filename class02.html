@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Echarts学习</title>
+    <script src="https://cdn.bootcss.com/echarts/5.3.0/echarts.js"></script>
+  </head>
+  <body>
+    <div id="main" style="width: 600px; height: 400px"></div>
+    <script>
+      var myChart = echarts.init(document.getElementById("main"));
+
+      option = {
+        title: {
+          text: "企业省市利润分布瀑布图",
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow",
+          },
+          formatter: function (params) {
+            var tar = params[1];
+            return tar.name + "<br/>" + tar.seriesName + " : " + tar.value;
+          },
+        },
+        grid: {
+          left: "3%",
+          right: "4%",
+          bottom: "3%",
+          containLabel: true,
+        },
+        xAxis: {
+          type: "category",
+          splitLine: { show: false },
+          data: ["深圳","广州","佛山","东莞","惠州","中山", "珠海","总计",],
+        },
+        yAxis: {
+          type: "value",
+        },
+        series: [
+          {
+            name: "Placeholder",
+            type: "bar",
+            stack: "Total",
+            itemStyle: {
+              borderColor: "transparent",
+              color: "transparent",
+            },
+            emphasis: {
+              itemStyle: {
+                borderColor: "transparent",
+                color: "transparent",
+              },
+            },
+            data: [0, 11008, 21660, 26136, 30005, 31994, 33856, 0],
+          },
+          {
+            name: "Life Cost",
+            type: "bar",
+            stack: "Total",
+            label: {
+              show: true,
+              position: "top",
+            },
+            data: [11008, 10652, 4476, 3869, 1989, 1862, 1299, 35155],
+          },
+        ],
+      };
+
+      myChart.setOption(option);
+    </script>
+  </body>
+</html>
